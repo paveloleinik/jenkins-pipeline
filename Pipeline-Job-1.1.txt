@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+    
+    environment {
+        PROJECT_NAME = "Neptun"
+        OWNER_NAME = "Pavel"
+    }
+
+    stages {
+        stage('1-Build') {
+            steps {
+                echo 'Hello World'
+                sh "ls -al /tmp"
+                
+            }
+        }
+        stage('2-Test') {
+            steps {
+                echo 'Test stage'
+                sh 'cat /etc/*-release'
+            }
+        }
+        stage('3-Deploy') {
+            steps {
+                echo "Deploy stage"
+                sh '''
+                    echo 'line1'
+                    echo 'line2'
+                '''
+                echo "${Project_NAME}"
+                echo "Hello ${OWNER_NAME}"
+            }
+        }
+    }
+}

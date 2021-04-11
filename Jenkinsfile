@@ -19,7 +19,7 @@ pipeline {
          parallel{
            stage ('Deploy to Staging'){
              steps {
-               build job:'ITVDN-deploy_to_stage'
+               sh "cp **/target/*.war /home/aroot/tomcat/apache-tomcat-9.0.45/webapps"
              }
            }
            stage ('Deploy to prod') {
@@ -27,7 +27,7 @@ pipeline {
                timeout(time:5, unit: 'DAYS') {
                  input message: "Approve Prod deployment"
                }
-               build job:'ITVDN-deploy_to_prod'
+               sh "cp **/target/*.war /home/aroot/tomcat/tomcat_prod/webapps"
              }     
            }
          }

@@ -19,12 +19,12 @@ pipeline {
          parallel{
            stage ('Deploy to Staging'){
              steps {
-               sh "cp **/target/*.war /home/aroot/tomcat/apache-tomcat-9.0.45/webapps"
+               build job:'ITVDN-deploy_to_stage'
              }
            }
            stage ('Deploy to prod') {
              steps {
-               sh "cp **/target/*.war /home/aroot/tomcat/tomcat_prod/webapps"
+               build job:'ITVDN-deploy_to_prod'
              }     
            }
          }
